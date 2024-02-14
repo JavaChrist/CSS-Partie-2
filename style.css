@@ -1,0 +1,180 @@
+:root {
+  --color1: rgb(247, 195, 231);
+  --color2: rgb(230, 88, 173);
+  --color3: rgb(66, 65, 65);
+  --color4: rgb(37, 9, 9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(./assets/img/bg.jpg) center/cover;
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  background: rgba(0, 0, 0, 0.61);
+  width: calc(100% - 50px);
+  padding: 20px 20px 6px;
+  box-shadow: 4px -2px 8px 4px;
+  border-radius: 5px;
+  /* BACKDROP-FILTER pour donner du flou  */
+  backdrop-filter: blur(5px);
+}
+.card:before {
+  content: "\2730";
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 2.4rem;
+}
+
+h1 {
+  margin-bottom: 24px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.polygon-container {
+  filter: drop-shadow(-1px 6px 3px var(--color1));
+  /* Mettre le parent en grid  */
+  place-self: center left;
+}
+
+.polygon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 100%);
+  height: 100px;
+  width: 100px;
+}
+
+.polygon:after {
+  content: "Un texte";
+  position: absolute;
+  color: var(--color4);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(338deg);
+  width: 90px;
+  padding: 4px;
+  text-align: center;
+}
+
+p {
+  line-height: 26px;
+  margin: 20px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-align: justify;
+}
+
+p::selection {
+  background: var(--color3);
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0 30px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + label {
+  background: var(--color1);
+  color: var(--color3);
+  transform: scale(1.1);
+  filter: drop-shadow(10px 10px 66px #cd1818);
+  -webkit-filter: drop-shadow(10px 10px 66px #cd1818);
+  -moz-filter: drop-shadow(10px 10px 66px #cd1818);
+}
+label {
+  cursor: pointer;
+  border: 1px solid var(--color1);
+  background: var(--color3);
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.2s;
+  user-select: none;
+}
+
+.e-mail {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.e-mail input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 3px solid transparent;
+  transition: 0.3s;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color1);
+  width: 35%;
+  min-width: 180px;
+  max-width: 300px;
+}
+
+input[type="text"]:focus {
+  background: transparent;
+  bottom: 3px solid var(--color3);
+  border-radius: 150px;
+}
+
+input[type="text"]::placeholder {
+  color: aqua;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+button {
+  cursor: pointer;
+  background: var(--color2);
+  border: none;
+  font-size: 1.3rem;
+  padding: 10px 20px;
+  border-radius: 150px;
+  margin: 0 auto;
+  display: block;
+  transition: 0.1s;
+}
+
+button:hover {
+  letter-spacing: 3px;
+}
+
+button:active {
+  transform: scale(1.2);
+}
+
+button:hover + a,
+a:hover {
+  opacity: 1;
+  transform: translate(0);
+}
+
+a {
+  color: var(--color2);
+  display: block;
+  text-align: center;
+  opacity: 0;
+  transform: translate(20px);
+}
+
+a:visited {
+  color: var(--color1);
+}
