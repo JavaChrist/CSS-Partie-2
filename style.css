@@ -19,12 +19,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .card {
   background: rgba(0, 0, 0, 0.61);
   width: calc(100% - 50px);
   padding: 20px 20px 6px;
-  box-shadow: 4px -2px 8px 4px;
+  box-shadow: 6px 2px 5px rgba(0, 0, 0, 0.521);
   border-radius: 5px;
   /* BACKDROP-FILTER pour donner du flou  */
   backdrop-filter: blur(5px);
@@ -39,7 +40,29 @@ body {
 
 h1 {
   margin-bottom: 24px;
+  position: relative;
 }
+/* animation barre début */
+h1::after {
+  content: "";
+  position: absolute;
+  background: var(--color2);
+  height: 1px;
+  width: 100%;
+  bottom: -14px;
+  left: 50%;
+  transform: translate(-50%) scalex(0);
+  animation: h1anim 7s ease-in-out forwards;
+  transform-origin: center;
+}
+
+@keyframes h1anim {
+  100% {
+    transform: translate(-50%) scalex(1);
+  }
+}
+/* animation barre fin  */
+
 .grid-container {
   display: grid;
   grid-template-columns: 20% 80%;
@@ -82,12 +105,14 @@ p {
 
 p::selection {
   background: var(--color3);
+  color: var(--color2);
 }
 
 .checkbox-container {
   display: flex;
   justify-content: space-around;
   margin: 20px 0 30px;
+  perspective: 30px;
 }
 
 input[type="checkbox"] {
@@ -111,6 +136,36 @@ label {
   user-select: none;
 }
 
+/* animation barre début  */
+label:first-of-type:hover {
+  animation: label1 1s infinite linear;
+}
+@keyframes label1 {
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* animation barre fin  */
+
+label:nth-child(4):hover {
+  animation: label2 3s infinite linear;
+}
+/* Ne pas oublier les perspectives sur le parent  */
+
+@keyframes label2 {
+  33% {
+    transform: translateZ(30px);
+  }
+  60% {
+    transform: translateZ(-40px);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
 .e-mail {
   text-align: center;
   margin-bottom: 20px;
@@ -125,14 +180,14 @@ label {
   text-align: center;
   font-size: 1.1rem;
   color: var(--color1);
-  width: 35%;
   min-width: 180px;
+  width: 35%;
   max-width: 300px;
 }
 
 input[type="text"]:focus {
   background: transparent;
-  bottom: 3px solid var(--color3);
+  border: 3px solid var(--color3);
   border-radius: 150px;
 }
 
@@ -164,17 +219,87 @@ button:active {
 button:hover + a,
 a:hover {
   opacity: 1;
+  visibility: visible;
   transform: translate(0);
 }
 
 a {
   color: var(--color2);
-  display: block;
   text-align: center;
+  display: block;
   opacity: 0;
-  transform: translate(20px);
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: 0.3s;
 }
 
 a:visited {
   color: var(--color1);
+}
+
+img {
+  height: 70px;
+  position: absolute;
+  filter: drop-shadow(0px 6px 3px rgba(255, 255, 0, 0.6));
+  z-index: -1;
+  animation: spaceship 26s infinite linear;
+}
+@keyframes spaceship {
+  0% {
+    top: 2%;
+    left: 2%;
+    transform: rotate(90deg);
+  }
+
+  10% {
+    top: 6%;
+    left: 30%;
+    transform: rotate(95deg);
+  }
+
+  20% {
+    top: 9%;
+    left: 60%;
+    transform: rotate(60deg);
+  }
+  30% {
+    top: 0%;
+    left: 80%;
+    transform: rotate(90deg);
+  }
+  40% {
+    top: 20%;
+    left: 120%;
+    transform: rotate(110deg);
+  }
+  50% {
+    top: 50%;
+    left: 80%;
+    transform: rotate(323deg);
+  }
+  60% {
+    top: 90%;
+    left: 90%;
+    transform: rotate(256deg);
+  }
+  70% {
+    top: 110%;
+    left: 50%;
+    transform: rotate(237deg);
+  }
+  80% {
+    top: 85%;
+    left: 30%;
+    transform: rotate(323deg);
+  }
+  90% {
+    top: 50%;
+    left: 15%;
+    transform: rotate(350deg);
+  }
+  100% {
+    top: 2%;
+    left: 2%;
+    transform: rotate(90deg);
+  }
 }
